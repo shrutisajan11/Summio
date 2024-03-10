@@ -1,0 +1,7 @@
+pip install flask
+pip install gensim
+
+python -m venv venv
+venv\Scripts\activate
+
+pip install youtube-transcript-api

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"   />
+    <meta http-equiv="X-UA-Compatible" content="ÏE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUMMIO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body background=
+"image1.jpg"
+    style="background-repeat: no-repeat; background-size: 40% 100%; background-attachment: fixed; ">
+    <p class="tab1">Registered Office Address:
+        <br />Amal Jyothi College<br /> of Engineering Kanjirappally,<br /> Koovappally P.O.Kottayam Dt.,<br /> Kerala 686518India
+      </p>
+      <p class="display">
+        <img class="ph"src="Phoneee.png" height="40px" width="auto">
+      <p class="colon">:+912346853561,+912837485291 </p>
+    </p>
+    <p class="connect"> Connect with us
+        <br  />
+        <br  />
+        <a href="https://www.instagram.com/13illn_/" class="a1">
+          <img src="instagram-white-icon.png" height="30px" width="30px">
+        </a>
+        <a href="https://www.facebook.com/shruti.sajan.18" class="a1">
+          <img src="facebook-app-round-white-icon.png" height="30px" width="30px">
+        </a>
+        <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJqWgqfXltVsJXcmrPPvBnBwtjxtCRzZdTNXgclcjNpWNHZCXMxggSVsslFBXNGJfpMDNHL" class="a1">
+          <img src="gmail.png" height="30px" width="35px">
+        </a>
+    </p>
+    <!-- Add this at the end of your HTML files, just before the closing </body> tag -->
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+  // Wait for the DOM to be ready
+  $(document).ready(function () {
+
+    // Navbar functionality
+    $('.nl').on('click', function (e) {
+      e.preventDefault(); // Prevent default behavior of the link
+      var page = $(this).attr('href');
+      window.location.href = page; // Redirect to the clicked page
+    });
+
+    $('.n1').on('click', function (e) {
+      e.preventDefault();
+      var page = $(this).attr('href');
+      window.location.href = page;
+    });
+
+    // Form submission
+    $('form').submit(function (e) {
+      e.preventDefault(); // Prevent the default form submission
+      var youtubeUrl = $('input[name="youtube_url"]').val();
+
+      // Add your logic for handling the form data (e.g., sending an AJAX request)
+
+      // For now, let's just log the YouTube URL to the console
+      console.log("YouTube URL:", youtubeUrl);
+    });
+
+    // Button click functionality
+    $('.sum').on('click', function () {
+      // Add your logic for the button click event
+      console.log("Summarize button clicked!");
+    });
+
+  });
+</script>
+
+
+    </body>

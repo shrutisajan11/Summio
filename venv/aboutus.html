@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ÏE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body background=
+"image1.jpg"
+    style="background-repeat: no-repeat; background-size: 40% 100%; background-attachment: fixed; ">
+    <h1>About us</h1>
+    <p class="q1">Welcome to our YouTube Transcript Summarizer Project, crafted with passion and expertise by a team of dedicated third-year college Computer Science students. As enthusiasts of technology and language processing, we embarked on this journey to streamline the vast sea of information found in YouTube videos.<br><br>
+        Driven by a shared curiosity and a commitment to innovation, our diverse team leverages the latest developments in natural language processing and machine learning to create a unique YouTube Transcript Summarizer Tool. With a focus on accessibility and user-friendliness, our project aims to empower users to efficiently grasp the essence of any video without the time investment of watching it in its entirety.<br><br>
+        Our journey involves not just coding and algorithms but a deep understanding of user needs. We offer good summaries, language support, and a commitment to privacy. As we navigate the exciting intersection of technology and communication, our web page reflects the collaborative spirit, creativity, and determination that define our dynamic team. Join us on this venture as we transform ideas into reality, one summarization at a time.
+        </p>
+        <!-- Add this at the end of your HTML files, just before the closing </body> tag -->
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+  // Wait for the DOM to be ready
+  $(document).ready(function () {
+
+    // Navbar functionality
+    $('.nl').on('click', function (e) {
+      e.preventDefault(); // Prevent default behavior of the link
+      var page = $(this).attr('href');
+      window.location.href = page; // Redirect to the clicked page
+    });
+
+    $('.n1').on('click', function (e) {
+      e.preventDefault();
+      var page = $(this).attr('href');
+      window.location.href = page;
+    });
+
+    // Form submission
+    $('form').submit(function (e) {
+      e.preventDefault(); // Prevent the default form submission
+      var youtubeUrl = $('input[name="youtube_url"]').val();
+
+      // Add your logic for handling the form data (e.g., sending an AJAX request)
+
+      // For now, let's just log the YouTube URL to the console
+      console.log("YouTube URL:", youtubeUrl);
+    });
+
+    // Button click functionality
+    $('.sum').on('click', function () {
+      // Add your logic for the button click event
+      console.log("Summarize button clicked!");
+    });
+
+  });
+</script>
+
+
+</body>
+</html>
