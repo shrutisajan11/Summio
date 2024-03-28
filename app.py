@@ -23,12 +23,12 @@ if __name__ == '__main__':
    # app.py
 # app.py
 
-from flask import Flask, render_template, request
+'''from flask import Flask, render_template, request
 from youtube_transcript_api import YouTubeTranscriptApi
 import os
 import urllib.parse
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates',static_folder='static')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -48,7 +48,7 @@ def index():
         if transcript is None:
             error_message = "Transcript not found. Please check the video URL and try again."
 
-    return render_template('index.html', transcript=transcript, error_message=error_message)
+    return render_template('index.html',transcript=transcript,error_message=error_message)
 
 @app.route('/aboutus')
 def aboutus():
@@ -67,4 +67,49 @@ def get_youtube_transcript(video_id):
         return None
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000, host='127.0.0.1')
+    app.run(debug=True, port=5000, host='127.0.0.1')'''
+
+from flask import Flask, render_template, request
+from youtube_transcript_api import YouTubeTranscriptApi
+
+app = Flask(__name__, template_folder='templates',static_folder='static')
+
+@app.route('/')
+def index():
+  error_message = None
+  transcript = None
+  return render_template('index.html', transcript=transcript, error_message=error_message)
+
+@app.route('/aboutus')
+def aboutus():
+    return render_template('aboutus.html')
+
+@app.route('/help')
+def help():
+    return render_template('help.html')
+
+@app.route('/get_youtube_transcript', methods=['POST'])
+def get_youtube_transcript():
+  error_message = None
+  transcript = None
+
+  if request.method == 'POST':
+    # Get YouTube video URL from the form
+    video_url = request.form['youtube_url']
+
+    # Extract video ID using urllib.parse
+    video_id = urllib.parse.urlparse(video_url).query.split('=')[-1]
+
+    try:
+      # Fetch YouTube transcript
+      transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
+      # Join transcript entries into a single string
+      transcript = "\n".join(entry['text'] for entry in transcript)
+    except Exception as e:
+      print(f"Error fetching transcript: {e}")
+      error_message = "Transcript not found. Please check the video URL and try again."
+
+  return render_template('index.html', transcript=transcript, error_message=error_message)
+
+if __name__ == '__main__':
+  app.run(debug=True)

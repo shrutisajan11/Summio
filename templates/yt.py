@@ -7,7 +7,7 @@ def get_youtube_transcript(video_url):
         # Extract video ID using urllib.parse
         video_id = urllib.parse.urlparse(video_url).path.split('/')[-1]
 
-        transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
+        transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en','ml'])
 
         # Create a directory to save the transcript
         output_dir = "youtube_transcripts"

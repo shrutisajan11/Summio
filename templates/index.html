@@ -1,177 +1,127 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="ÏE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUMMIO</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="{{('static', filename='style.css') }}">
-    <link rel="stylesheet" href=
-    "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src=
-    "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-        </script>
-        <script src=
-    "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js">
-        </script>
-</head>-->
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SUMMIO</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css')}}"/>
 
-<!--<link rel="stylesheet" href="{{ url_for('static', filename='summio-high-resolution-logo-black.png') }}">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='summio-high-resolution-logo-black.png') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='icon.png') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='image1.jpg') }}">-->
 
-
-
-<!--<img src="{{ url_for('static', filename='summio-high-resolution-logo-black.png') }}" height="150px" width="300px" alt="summarization logo" class="left">
+    <!-- <img src="{{ url_for('static', filename='summio-high-resolution-logo-black.png') }}" height="150px" width="300px" alt="summarization logo" class="left">
 <img src="{{ url_for('static', filename='icon.png') }}" height="200px" width="300px" alt="yt icon" class="right">-->
+  </head>
 
-</head>
-
-<body style="background-repeat: no-repeat; background-size: 40% 100%; background-attachment: fixed; background-image: url('{{ url_for('static', filename='image1.jpg') }}')">
-    <div class=link>
-      <a class=nl href=contactus.html>CONTACT US</a>
-      <a class=nl href=aboutus.html>ABOUT US</a>
-      <a class=nl href=help.html>HELP</a>
-      <a class=n1 href=index.html>HOME</a>
+  <body
+    style="background-repeat: no-repeat; background-size: 40% 100%; background-attachment: fixed; background-image: url('{{ url_for('static', filename='image1.jpg') }}')"
+  >
+    <div class="link">
+      <a class="nl" href="contactus.html">CONTACT US</a>
+      <a class="nl" href="aboutus.html">ABOUT US</a>
+      <a class="nl" href="help.html">HELP</a>
+      <a class="n1" href="index.html">HOME</a>
       <!--<a class=nl href=5.html>SIGN-UP</a>-->
-      </div>
-      
-    <img src="summio-high-resolution-logo-black.png" height="150px" width="300px" alt="summarization logo" class="left">
-   
-    <br />
-    <p class="myClass" style="color:#FFFFFF;" >
-    Youtube Transcript <br /> 
-      Summarization
-    in <br />an instant
-    </p>
-    <img src="icon.png"  height="200px" width="300px" alt="yt icon" class="right" >
-    
-   <br /> 
-<p class="Content">Welcome to our YouTube Video Summarizer- your shortcut to valuable content! Simply paste the YouTube video link, and our innovative tool will swiftly generate transcript of the video.If needed,the summary of the transcript can be generated using the summarization option below the generated transcript.  Save time, enhance learning, and stay informed without sifting through lengthy videos. Paste the link of the youtube video to summarize right now!</p>
-<div class="form">
-  <form action="/" method="post">
-    <input type="text" name="youtube_url" placeholder="Paste the link here" size="120" required>
-    <input type="submit" value="Go!">
-</form>
+    </div>
 
-<!-- <form action="/action.php">
+    <img
+      src="summio-high-resolution-logo-black.png"
+      height="150px"
+      width="300px"
+      alt="summarization logo"
+      class="left"
+    />
+
+    <br />
+    <p class="myClass" style="color: #ffffff">
+      Youtube Transcript <br />
+      Summarization in <br />an instant
+    </p>
+    <img
+      src="icon.png"
+      height="200px"
+      width="300px"
+      alt="yt icon"
+      class="right"
+    />
+
+    <br />
+    <p class="Content">
+      Welcome to our YouTube Video Summarizer- your shortcut to valuable
+      content! Simply paste the YouTube video link, and our innovative tool will
+      swiftly generate transcript of the video.If needed,the summary of the
+      transcript can be generated using the summarization option below the
+      generated transcript. Save time, enhance learning, and stay informed
+      without sifting through lengthy videos. Paste the link of the youtube
+      video to summarize right now!
+    </p>
+    <div class="form" action="/get_youtube_transcript">
+      <form action="/" method="post">
+        <input
+          type="text"
+          name="youtube_url"
+          placeholder="Paste the link here"
+          size="120"
+          required
+        />
+        <input type="submit" value="Go!" />
+      </form>
+
+      <!-- <form action="/action.php">
       <input type="text" placeholder="Paste the link here" size="120" required>
       <input type="submit" value="Go!">
   </form>-->
-  <textarea id="transcriptTextArea" rows="70" cols="150" readonly>{{ transcript }}</textarea>
-  
+      <textarea id="transcriptTextArea" rows="70" cols="150" readonly>
+{{ transcript }}</textarea
+      >
+    </div>
+    <button class="sum">summarize</button>
 
-  
-</div>
-<button class="sum">summarize</button>
+    <br />
+    <br />
+    <br />
+    <br />
 
-<br />
-<br />
-<br />
-<br />
-<!--<footer>
-  <p class="connect"> Connect with us
-    <br  />
-    <br  />
-    <a href="https://www.instagram.com/13illn_/">
-      <img src="instagram-white-icon.png" height="30px" width="30px">
-    </a>
-    <a href="https://www.facebook.com/shruti.sajan.18">
-      <img src="facebook-app-round-white-icon.png" height="30px" width="30px">
-    </a>
-    <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJqWgqfXltVsJXcmrPPvBnBwtjxtCRzZdTNXgclcjNpWNHZCXMxggSVsslFBXNGJfpMDNHL">
-      <img src="gmail.png" height="30px" width="35px">
-    </a>
-    <p class="display">
-      <img class="ph"src="Phoneee.png" >
-    <p class="colon">:+912346853561 </p>
-    </p>
-  </p>
-  
-  <br  />
-  <br  />
-  <br  />
-  <br  />-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      // Wait for the DOM to be ready
+      $(document).ready(function () {
+        // Navbar functionality
+        $(".nl").on("click", function (e) {
+          e.preventDefault(); // Prevent default behavior of the link
+          var page = $(this).attr("href");
+          window.location.href = page; // Redirect to the clicked page
+        });
 
-  <!--<pre class="connect"></pre>-->
-  <!--<p class="display">
-    <img class="ph"src="Phoneee.png" >:
-    0<p class="colon">: </p>
-  </p>
-  <p class="get"> Get to know us
-    <br  />
-    <br  />
-    <a href="aboutus.html">
-      About us
-      <br  />
-      <br  />
-    </a>
-    Let us help you
-    <br  />
-    <br  />
-    <a href="help.html">
-      Help
-      
-    </a>
-  </p>
-  <p class="tab1">Mail us at:
-    <br />Amal Jyothi College<br /> of Engineering Kanjirappally,<br /> Koovappally P.O.Kottayam Dt.,<br /> Kerala 686518India
-  </p>
- 
-  <img src="summio-high-resolution-logo-black.png" height="120px" width="300px" alt="summarization logo" class="center">
+        $(".n1").on("click", function (e) {
+          e.preventDefault();
+          var page = $(this).attr("href");
+          window.location.href = page;
+        });
 
-  </footer>-->
-  <!-- Add this at the end of your HTML files, just before the closing </body> tag -->
+        // Form submission
+        $("form").submit(function (e) {
+          e.preventDefault(); // Prevent the default form submission
+          var youtubeUrl = $('input[name="youtube_url"]').val();
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+          // Add your logic for handling the form data (e.g., sending an AJAX request)
 
-<script>
-  // Wait for the DOM to be ready
-  $(document).ready(function () {
+          // For now, let's just log the YouTube URL to the console
+          console.log("YouTube URL:", youtubeUrl);
+        });
 
-    // Navbar functionality
-    $('.nl').on('click', function (e) {
-      e.preventDefault(); // Prevent default behavior of the link
-      var page = $(this).attr('href');
-      window.location.href = page; // Redirect to the clicked page
-    });
-
-    $('.n1').on('click', function (e) {
-      e.preventDefault();
-      var page = $(this).attr('href');
-      window.location.href = page;
-    });
-
-    // Form submission
-    $('form').submit(function (e) {
-      e.preventDefault(); // Prevent the default form submission
-      var youtubeUrl = $('input[name="youtube_url"]').val();
-
-      // Add your logic for handling the form data (e.g., sending an AJAX request)
-
-      // For now, let's just log the YouTube URL to the console
-      console.log("YouTube URL:", youtubeUrl);
-    });
-
-    // Button click functionality
-    $('.sum').on('click', function () {
-      // Add your logic for the button click event
-      console.log("Summarize button clicked!");
-    });
-
-  });
-</script>
-
-
-</body>
+        // Button click functionality
+       /* $('input[type="submit"]').on("click", function (e) {
+          e.preventDefault();
+           Add your logic for the button click event
+          console.log("Submit button clicked!");
+        });*/
+      });
+    </script>
+  </body>
 </html>
