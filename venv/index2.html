@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUMMIO</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+</head>
+<body style="background-repeat: no-repeat; background-size: 40% 100%; background-attachment: fixed; background-image: url('{{ url_for('static', filename='image1.jpg') }}')">
+  <div class="link">
+    <a class="nl" href="/contactus.html">CONTACT US</a>
+    <a class="nl" href="/aboutus.html">ABOUT US</a>
+    <a class="nl" href="/help.html">HELP</a>
+    <a class="n1" href="/index.html">HOME</a>
+  </div>
+
+  <img src="{{ url_for('static', filename='logo.png') }}" alt="Image" height="150px" width="auto" alt="summarization logo" class="left" />
+
+  <br />
+  <p class="myClass" style="color: #ffffff">
+    Youtube Transcript <br />
+    Summarization in <br />an instant
+  </p>
+  <img src="{{ url_for('static', filename='yticon.png') }}" height="250px" width="auto" alt="yt icon" class="right" />
+
+  <br />
+  <p class="Content">
+    Welcome to our YouTube Video Summarizer- your shortcut to valuable
+    content! Simply paste the YouTube video link, and our innovative tool will
+    swiftly generate transcript of the video. If needed, the summary of the
+    transcript can be generated using the summarization option below the
+    generated transcript. Save time, enhance learning, and stay informed
+    without sifting through lengthy videos. Paste the link of the youtube
+    video to summarize right now!
+  </p>
+  <div class="form">
+    <form action="/get_youtube_transcript" method="post">
+      <input type="text" name="youtube_url" placeholder="Paste the link here" size="120" required />
+      <button onclick="gotolink()">GO</button>
+    </form>
+    <script>
+      function gotolink() {
+        window.location.href = "/aboutus.html";
+      }
+    </script>
+    
+    {% for url, transcript in transcripts.items() %}
+    <textarea rows="100" cols="100" readonly>{{ transcript }}</textarea>
+    {% if error_messages.get(url) %}
+    <p>Error: {{ error_messages[url] }}</p>
+    {% endif %}
+    {% endfor %}
+  </div>
+  
+  <button class="sum" onclick="summary()">Summarize</button>
+
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    // Wait for the DOM to be ready
+    $(document).ready(function () {
+      // Navbar functionality
+      $(".nl").on("click", function (e) {
+        e.preventDefault(); // Prevent default behavior of the link
+        var page = $(this).attr("href");
+        window.location.href = page; // Redirect to the clicked page
+      });
+
+      $(".n1").on("click", function (e) {
+        e.preventDefault();
+        var page = $(this).attr("href");
+        window.location.href = page;
+      });
+
+      // Form submission
+      $("form").submit(function (e) {
+        e.preventDefault(); // Prevent the default form submission
+        var youtubeUrl = $('input[name="youtube_url"]').val();
+
+        // Add your logic for handling the form data (e.g., sending an AJAX request)
+
+        // For now, let's just log the YouTube URL to the console
+        console.log("YouTube URL:", youtubeUrl);
+      });
+    });
+  </script>
+</body>
+</html>

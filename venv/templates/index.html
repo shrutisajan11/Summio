@@ -8,7 +8,14 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static', filename='style.css')}}"/>
+      href="{{ url_for('static', filename='style.css')}}"
+    />
+    =======
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
 
     <!--<link rel="stylesheet" href="{{ url_for('static', filename='summio-high-resolution-logo-black.png') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='icon.png') }}">
@@ -30,9 +37,10 @@
     </div>
 
     <img
-      src="summio-high-resolution-logo-black.png"
+      src="{{ url_for('static', filename='logo.png') }}"
+      alt="Image"
       height="150px"
-      width="300px"
+      width="auto"
       alt="summarization logo"
       class="left"
     />
@@ -43,9 +51,9 @@
       Summarization in <br />an instant
     </p>
     <img
-      src="icon.png"
-      height="200px"
-      width="300px"
+      src="{{ url_for('static', filename='yticon.png') }}"
+      height="250px"
+      width="auto"
       alt="yt icon"
       class="right"
     />
@@ -60,8 +68,8 @@
       without sifting through lengthy videos. Paste the link of the youtube
       video to summarize right now!
     </p>
-    <div class="form" action="/get_youtube_transcript">
-      <form action="/" method="post">
+    <div class="form">
+      <form action="/get_youtube_transcript" method="post">
         <input
           type="text"
           name="youtube_url"
@@ -69,23 +77,36 @@
           size="120"
           required
         />
-        <input type="submit" value="Go!" />
-      </form>
+        <button class="submit" onclick="gotolink(this)">GO</button>
+      
+      <script>
+        function gotolink() {
+          window.location.href = "/aboutus";
+        }
+      </script>
 
       <!-- <form action="/action.php">
       <input type="text" placeholder="Paste the link here" size="120" required>
       <input type="submit" value="Go!">
   </form>-->
-      <textarea id="transcriptTextArea" rows="70" cols="150" readonly>
-{{ transcript }}</textarea
-      >
-    </div>
-    <button class="sum">summarize</button>
+      {% for url, transcript in transcripts.items() %}
+      <textarea rows="100" cols="100" readonly>{{ transcript }}</textarea>
+      {% if error_messages.get(url) %}
+      <p>Error: {{ error_messages[url] }}</p>
+      {% endif %} {% endfor %}
+    </div>  </form>
+    <button class="sum" onclick="summary(this)">Summarize</button>
+    <script>
+      function summary() {
+        window.location.href = "/summaryy";
+      }
+    </script>
 
     <br />
     <br />
     <br />
     <br />
+    
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
@@ -95,13 +116,13 @@
         $(".nl").on("click", function (e) {
           e.preventDefault(); // Prevent default behavior of the link
           var page = $(this).attr("href");
-          window.location.href = page; // Redirect to the clicked page
+          window.location.href = /aboutus; // Redirect to the clicked page
         });
 
         $(".n1").on("click", function (e) {
           e.preventDefault();
           var page = $(this).attr("href");
-          window.location.href = page;
+          window.location.href =/summary;
         });
 
         // Form submission
@@ -116,7 +137,7 @@
         });
 
         // Button click functionality
-       /* $('input[type="submit"]').on("click", function (e) {
+        /* $('input[type="submit"]').on("click", function (e) {
           e.preventDefault();
            Add your logic for the button click event
           console.log("Submit button clicked!");
