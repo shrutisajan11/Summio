@@ -1,15 +1,58 @@
-
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TRANSCRIPT</title>
+    <title>Summary</title>
     <link
       rel="stylesheet"
       type="text/css"
       href="{{ url_for('static', filename='style.css')}}"
     />
-    <textarea rows="100" cols="100" readonly>{{ transcript }}</textarea>
   </head>
+  <body
+    style="background-repeat: no-repeat; background-size: 40% 100%; background-attachment: fixed; background-image: url('{{ url_for('static', filename='image1.jpg') }}')"
+  >
+    <p class="sumtitle" style="color: #ffffff">Summary of the video</p>
+    <button class="sum" onclick="goToSum()">Click here to generate!</button>
+    <br /><br /><br /><br />
+    <div class="form">
+      <textarea
+        id="summaryTextArea"
+        class="textarea"
+        rows="10"
+        cols="100"
+        readonly
+      ></textarea>
+    </div>
+    <br /><br />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      function goToSum() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/get_summary_transcript", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            document.getElementById("summaryTextArea").value = response.summary;
+          } else if (
+            xhr.readyState === XMLHttpRequest.DONE &&
+            xhr.status !== 200
+          ) {
+            console.error("Error:", xhr.status);
+          }
+        };
+        xhr.send(JSON.stringify({ video_id: "UNo0TG9LwwI" }));
+      }
+    </script>
+    <button class="sum" onclick="goTotranslate()">Translate</button>
+    <script>
+      function goTotranslate() {
+        window.location.href = "/translate";
+      }
+    </script>
+  </body>
 </html>

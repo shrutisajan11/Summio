@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Translate</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+</head>
+<body
+    style="background-repeat: no-repeat; background-size: 40% 100%; background-attachment: fixed; background-image: url('{{ url_for('static', filename='image1.jpg') }}')"
+>
+    <p class="sumtitle" style="color: #ffffff">Translation of the video</p>
+    <p class="selecttitle" style="color: #ffffff">Select Language for Translation:</p>
+    <div class="form">
+        <select id="languageSelect" class="select" name="language">
+            <option value="" disabled selected>Select language</option>
+            <option value="spanish">Spanish</option>
+            <option value="italian">Italian</option>
+        </select>
+    </div>
+    <button class="submit1" onclick="translateSummary()">Submit</button>
+    <br /><br /><br /><br />
+    <div class="form">
+        <textarea id="summaryTextArea" class="textarea" rows="10" cols="100" readonly></textarea>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+    function translateSummary() {
+        var language = document.getElementById("languageSelect").value;
+        if (!language) {
+            alert("Please select a language.");
+            return;
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/get_summary_transcript", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                var translatedSummary = response[language + "_summary"];
+                document.getElementById("summaryTextArea").value = translatedSummary;
+            } else if (
+                xhr.readyState === XMLHttpRequest.DONE &&
+                xhr.status !== 200
+            ) {
+                console.error("Error:", xhr.status);
+            }
+        };
+        xhr.send(JSON.stringify({ 'video_id': 'UNo0TG9LwwI' })); 
+    }
+    </script>
+    <p class="selecttitle" style="color: #ffffff">Click on the button below to go back to home page</p>
+    <button class="sum" onclick="gotohome()">BACK TO HOME PAGE</button>
+    <script>function gotohome() {
+      window.location.href = "/";
+    }
+  </script>
+</body>
+</html>
+
+
+
